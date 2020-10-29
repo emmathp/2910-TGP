@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+         Potin numéro <%= @gossip %>: 
+    </div>
+
+    <div class="card-body">
+        <h6 class="card-title"> <U>le titre du potin est:</U> <%=@gossip_id.title %> </h6>
+            <h7> l'auteur est: <%= link_to "#{@gossip_id.user.first_name}", user_path%></h7>
+            <p class="card-text"> et vient de : <%= link_to "#{@get_city_name}", city_path%></p>
+            <p> ce potin a été crée le: <%=@gossip_id.created_at %> </p> </br>
+            <p><U>Contenu du potin:</U> </p> </br>
+            <p> <%=@gossip_id.content %> </p> </br>
+            <%=link_to "Editer l'article", edit_gossip_path, class:"btn btn-success" %>
+            <a href="<%=  gossip_path(@gossip) %>" class="btn btn-danger"  data-confirm="Etes-vous sur ?" data-method="DELETE"> Supprimer </a>
+    </div>
+</div>    
+    </br>
+<div class="card">
+    <div class="card-header">
+    Commente tes potins favoris:
+    </div>
+    <div class="card-body">
+    <div class="form-group">
+        <%= form_tag gossip_path(@gossip) do %>
+            </br>
+            <label>Contenu:</label>
+            </br>
+            <%=text_area_tag :content%>
+        </div>
+
+        <div class="form-froup">
+            <button type="submit" class="btn btn-primary">Commenter</button>
+        </div>
+
+        <% end %>    
+        
+    </div>
+</div>
